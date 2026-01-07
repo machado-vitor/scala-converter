@@ -1,4 +1,5 @@
 package converter
+// Converter is a type class, it defines behavior separately from data types.
 
 trait Converter[A, B]:
   def convert(value: A): B
@@ -12,3 +13,4 @@ object Converter:
 
 extension [A](value: A)
   def convertTo[B](using c: Converter[A, B]): B = c.convert(value)
+// extension adds convertTo methods to every type A.
