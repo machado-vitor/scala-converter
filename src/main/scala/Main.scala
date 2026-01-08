@@ -21,3 +21,7 @@ given Converter[User, UserDto] with
   val maybeUser: Option[User] = Some(User(3L, "Charlie"))
   val maybeDto = maybeUser.convertTo[Option[UserDto]]
   println(s"Maybe DTO: $maybeDto")
+
+  val eitherUser: Either[String, User] = Right(User(4L, "Diana"))
+  val eitherDto = eitherUser.convertTo[Either[String, UserDto]]
+  println(s"Either DTO: $eitherDto")

@@ -11,6 +11,9 @@ object Converter:
   given optionConverter[A, B](using c: Converter[A, B]): Converter[Option[A], Option[B]] with
     def convert(value: Option[A]): Option[B] = value.map(c.convert)
 
+  given eitherConverter[E, A, B](using c: Converter[A, B]): Converter[Either[E, A], Either[E, B]] with
+    def convert(value: Either[E, A]): Either[E, B] = value.map(c.convert)
+
 extension [A](value: A)
   def convertTo[B](using c: Converter[A, B]): B = c.convert(value)
 // extension adds convertTo methods to every type A.
